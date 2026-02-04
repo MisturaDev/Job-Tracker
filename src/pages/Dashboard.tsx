@@ -104,7 +104,10 @@ const Dashboard = () => {
         {/* Filter and Add Button */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <StatusFilter selected={statusFilter} onChange={setStatusFilter} />
-          <Button onClick={() => setFormOpen(true)}>
+          <Button 
+            onClick={() => setFormOpen(true)}
+            className="w-full sm:w-auto transition-all duration-200 hover:scale-105 active:scale-95"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Add Application
           </Button>
