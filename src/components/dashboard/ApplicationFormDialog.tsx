@@ -107,7 +107,7 @@ const ApplicationFormDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{isEditing ? "Edit Application" : "Add New Application"}</DialogTitle>
           <DialogDescription>
@@ -233,11 +233,20 @@ const ApplicationFormDialog = ({
                 </FormItem>
               )}
             />
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <DialogFooter className="flex-col sm:flex-row gap-2 pt-4">
+              <Button 
+                type="button" 
+                variant="outline" 
+                onClick={() => onOpenChange(false)}
+                className="w-full sm:w-auto"
+              >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isLoading}>
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                className="w-full sm:w-auto"
+              >
                 {isLoading ? "Saving..." : isEditing ? "Update" : "Add Application"}
               </Button>
             </DialogFooter>
