@@ -107,8 +107,10 @@ const ApplicationFormDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent
+        className="sm:max-w-md w-[calc(100%-2rem)] sm:w-full top-4 translate-y-0 sm:top-[50%] sm:translate-y-[-50%] max-h-[calc(100dvh-2rem)] overflow-hidden flex flex-col"
+      >
+        <DialogHeader className="shrink-0">
           <DialogTitle>{isEditing ? "Edit Application" : "Add New Application"}</DialogTitle>
           <DialogDescription>
             {isEditing
@@ -117,7 +119,8 @@ const ApplicationFormDialog = ({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col flex-1 min-h-0">
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-4">
             <FormField
               control={form.control}
               name="company_name"
@@ -233,20 +236,18 @@ const ApplicationFormDialog = ({
                 </FormItem>
               )}
             />
-            <DialogFooter className="flex-col sm:flex-row gap-2 pt-4">
-              <Button 
-                type="button" 
-                variant="outline" 
+            </div>
+
+            <DialogFooter className="shrink-0 flex-col sm:flex-row gap-2 pt-4 border-t border-border bg-background pb-[calc(1rem+env(safe-area-inset-bottom))]">
+              <Button
+                type="button"
+                variant="outline"
                 onClick={() => onOpenChange(false)}
                 className="w-full sm:w-auto"
               >
                 Cancel
               </Button>
-              <Button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full sm:w-auto"
-              >
+              <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
                 {isLoading ? "Saving..." : isEditing ? "Update" : "Add Application"}
               </Button>
             </DialogFooter>
