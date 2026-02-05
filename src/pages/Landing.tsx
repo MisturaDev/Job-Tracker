@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Briefcase, CheckCircle, TrendingUp, Calendar } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Landing = () => {
   return (
@@ -12,7 +13,8 @@ const Landing = () => {
             <Briefcase className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-foreground">JobTracker</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Link to="/login">
               <Button variant="ghost">Log in</Button>
             </Link>
