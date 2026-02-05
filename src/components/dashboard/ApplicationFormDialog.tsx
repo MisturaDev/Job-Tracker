@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { ArrowLeft } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -275,7 +276,18 @@ const ApplicationFormDialog = ({
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerContent className="max-h-[90dvh]">
           <DrawerHeader className="text-left">
-            <DrawerTitle>{isEditing ? "Edit Application" : "Add New Application"}</DrawerTitle>
+            <div className="flex items-center gap-3 mb-2">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={() => onOpenChange(false)}
+                className="h-8 w-8 rounded-full hover:bg-primary/10 transition-colors"
+              >
+                <ArrowLeft className="h-5 w-5 text-primary" />
+              </Button>
+              <DrawerTitle className="m-0">{isEditing ? "Edit Application" : "Add New Application"}</DrawerTitle>
+            </div>
             <DrawerDescription>
               {isEditing
                 ? "Update the details of your job application."
@@ -292,7 +304,18 @@ const ApplicationFormDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader className="shrink-0">
-          <DialogTitle>{isEditing ? "Edit Application" : "Add New Application"}</DialogTitle>
+          <div className="flex items-center gap-3">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={() => onOpenChange(false)}
+              className="h-8 w-8 rounded-full hover:bg-primary/10 transition-colors"
+            >
+              <ArrowLeft className="h-5 w-5 text-primary" />
+            </Button>
+            <DialogTitle className="m-0">{isEditing ? "Edit Application" : "Add New Application"}</DialogTitle>
+          </div>
           <DialogDescription>
             {isEditing
               ? "Update the details of your job application."
