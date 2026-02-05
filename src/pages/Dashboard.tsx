@@ -9,6 +9,7 @@ import StatsCards from "@/components/dashboard/StatsCards";
 import StatusFilter from "@/components/dashboard/StatusFilter";
 import ApplicationCard from "@/components/dashboard/ApplicationCard";
 import ApplicationFormDialog from "@/components/dashboard/ApplicationFormDialog";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -78,10 +79,11 @@ const Dashboard = () => {
             <Briefcase className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-foreground">JobTracker</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:inline">
               {user?.email}
             </span>
+            <ThemeToggle />
             <Button variant="ghost" size="icon" onClick={handleSignOut}>
               <LogOut className="h-5 w-5" />
             </Button>
