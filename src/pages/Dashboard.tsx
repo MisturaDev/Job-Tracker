@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Briefcase, Plus, LogOut } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/useAuth";
 import { useApplications } from "@/hooks/useApplications";
 import { Application, ApplicationStatus } from "@/types/application";
@@ -76,7 +77,7 @@ const Dashboard = () => {
       <header className="border-b border-border sticky top-0 bg-background z-10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Briefcase className="h-8 w-8 text-primary" />
+            <img src={logo} alt="JobTracker logo" className="h-8 w-8 rounded-lg" />
             <span className="text-2xl font-bold text-foreground">JobTracker</span>
           </div>
           <div className="flex items-center gap-2">
