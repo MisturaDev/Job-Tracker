@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Briefcase, CheckCircle, TrendingUp, Calendar } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import logo from "@/assets/logo.png";
 
 const Landing = () => {
   return (
@@ -10,7 +11,7 @@ const Landing = () => {
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Briefcase className="h-8 w-8 text-primary" />
+            <img src={logo} alt="JobTracker logo" className="h-8 w-8 rounded-lg" />
             <span className="text-2xl font-bold text-foreground">JobTracker</span>
           </div>
           <div className="flex items-center gap-2">
