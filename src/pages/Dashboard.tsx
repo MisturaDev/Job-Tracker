@@ -11,6 +11,7 @@ import StatsCards from "@/components/dashboard/StatsCards";
 import StatusFilter from "@/components/dashboard/StatusFilter";
 import ApplicationCard from "@/components/dashboard/ApplicationCard";
 import ApplicationFormDialog from "@/components/dashboard/ApplicationFormDialog";
+import ApplicationDetailsDialog from "@/components/dashboard/ApplicationDetailsDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   AlertDialog,
@@ -40,6 +41,7 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [formOpen, setFormOpen] = useState(false);
   const [editingApplication, setEditingApplication] = useState<Application | null>(null);
+  const [viewingApplication, setViewingApplication] = useState<Application | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const filteredApplications = useMemo(() => {
@@ -66,6 +68,10 @@ const Dashboard = () => {
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
+  };
+
+  const handleView = (application: Application) => {
+    setViewingApplication(application);
   };
 
   const handleEdit = (application: Application) => {
@@ -166,6 +172,7 @@ const Dashboard = () => {
               <ApplicationCard
                 key={application.id}
                 application={application}
+                onView={handleView}
                 onEdit={handleEdit}
                 onDelete={(id) => setDeleteId(id)}
               />
@@ -173,6 +180,13 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+
+      {/* View Details Dialog */}
+      <ApplicationDetailsDialog
+        application={viewingApplication}
+        open={!!viewingApplication}
+        onOpenChange={(open) => !open && setViewingApplication(null)}
+      />
 
       {/* Form Dialog */}
       <ApplicationFormDialog
