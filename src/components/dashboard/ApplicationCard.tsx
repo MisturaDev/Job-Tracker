@@ -7,6 +7,7 @@ import { format } from "date-fns";
 
 interface ApplicationCardProps {
   application: Application;
+  onView: (application: Application) => void;
   onEdit: (application: Application) => void;
   onDelete: (id: string) => void;
 }
@@ -24,9 +25,18 @@ const locationLabels = {
   hybrid: "Hybrid",
 };
 
-const ApplicationCard = ({ application, onEdit, onDelete }: ApplicationCardProps) => {
+const ApplicationCard = ({ application, onView, onEdit, onDelete }: ApplicationCardProps) => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't trigger view if clicking on action buttons
+    if ((e.target as HTMLElement).closest('button, a')) return;
+    onView(application);
+  };
+
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card 
+      className="hover:shadow-md transition-shadow cursor-pointer hover:border-primary/50"
+      onClick={handleCardClick}
+    >
       <CardContent className="p-4">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex-1">
