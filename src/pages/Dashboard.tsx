@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Briefcase, Plus, LogOut } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Briefcase, Plus, LogOut, Search } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/useAuth";
 import { useApplications } from "@/hooks/useApplications";
@@ -36,14 +37,31 @@ const Dashboard = () => {
   } = useApplications();
 
   const [statusFilter, setStatusFilter] = useState<ApplicationStatus | "all">("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [formOpen, setFormOpen] = useState(false);
   const [editingApplication, setEditingApplication] = useState<Application | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const filteredApplications = useMemo(() => {
-    if (statusFilter === "all") return applications;
-    return applications.filter((app) => app.status === statusFilter);
-  }, [applications, statusFilter]);
+    let filtered = applications;
+    
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (app) =>
+          app.company_name.toLowerCase().includes(query) ||
+          app.role.toLowerCase().includes(query)
+      );
+    }
+    
+    // Apply status filter
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((app) => app.status === statusFilter);
+    }
+    
+    return filtered;
+  }, [applications, statusFilter, searchQuery]);
 
   const handleSignOut = async () => {
     await signOut();
@@ -104,16 +122,27 @@ const Dashboard = () => {
           <StatsCards applications={applications} />
         </div>
 
-        {/* Filter and Add Button */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <StatusFilter selected={statusFilter} onChange={setStatusFilter} />
-          <Button 
-            onClick={() => setFormOpen(true)}
-            className="w-full sm:w-auto transition-all duration-200 hover:scale-105 active:scale-95"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Application
-          </Button>
+        {/* Search and Filter */}
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search by company or role..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <StatusFilter selected={statusFilter} onChange={setStatusFilter} />
+            <Button 
+              onClick={() => setFormOpen(true)}
+              className="w-full sm:w-auto transition-all duration-200 hover:scale-105 active:scale-95"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              Add Application
+            </Button>
+          </div>
         </div>
 
         {/* Applications List */}
