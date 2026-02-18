@@ -1,73 +1,112 @@
-# Welcome to your Lovable project
+# JobTracker
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-## Project info
+JobTracker is a modern job application tracking web app that helps users organize, monitor and manage their job search in one place. 
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Built with React, Tailwind CSS and Supabase, it provides a clean dashboard for tracking applications, interviews and offers efficiently.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Dashboard with real-time stats:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+   - Total applications
 
-Changes made via Lovable will be committed automatically to this repo.
+   - Interviews
 
-**Use your preferred IDE**
+   - Offers
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+  - Rejections
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Search and filter applications
 
-Follow these steps:
+- Tags for better organization
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- View job details modal
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Profile page with user info and stats
 
-# Step 3: Install the necessary dependencies.
-npm i
+ - Dark/light theme toggle
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Authentication powered by Supabase
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Tech Stack
 
-**Use GitHub Codespaces**
+- **Frontend**: React, TypeScript, Vite
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Styling**: Tailwind CSS, shadcn-ui
 
-## What technologies are used for this project?
+- **Backend**: Supabase (Auth + Database)
 
-This project is built with:
+- **State Management**: React hooks
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Installation
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MisturaDev/Job-Tracker.git
+   cd Job-Tracker
+   ```
 
-## Can I connect a custom domain to my Lovable project?
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Yes, you can!
+3. **Set up Environment Variables**
+   - Create a `.env` file in the root directory and add your Supabase credentials:
+   ```env
+    VITE_SUPABASE_URL=your_supabase_url
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Supabase Setup
+
+- Create a Supabase project
+
+- Enable Email Auth
+
+- Add required database tables (applications, profiles, etc.)
+
+
+---
+
+## Screenshots
+Coming up soon...
+
+
+
+---
+
+## Live Demo
+[Live Demo](https://job-purple.lovable.app/)
+
+---
+
+**This project demonstrates my ability to build modern, scalable full-stack applications using industry-standard tools.**
+
+---
+
+## Developer
+
+**Mistura Ishola**
+
+[LinkedIn](https://www.linkedin.com/in/mistura-ishola/)
+
+
+
+
