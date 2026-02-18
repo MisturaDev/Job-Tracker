@@ -1,6 +1,6 @@
 # JobTracker
 
-A modern job application tracking app built with React + Supabase to help users organize and monitor their job search efficiently.
+A modern job application tracking app built with React to help users organize and monitor their job search efficiently.
 
 ---
 
@@ -56,7 +56,7 @@ A modern job application tracking app built with React + Supabase to help users 
    ```
 
 3. **Set up Environment Variables**
-   Create a `.env` file in the root directory and add your Supabase credentials:
+   - Create a `.env` file in the root directory and add your Supabase credentials:
    ```env
     VITE_SUPABASE_URL=your_supabase_url
     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -66,6 +66,16 @@ A modern job application tracking app built with React + Supabase to help users 
    ```bash
    npm run dev
    ```
+
+
+## Supabase Setup
+
+- Create a Supabase project
+
+- Enable Email Auth
+
+- Add required database tables (applications, profiles, etc.)
+
 
 ---
 
