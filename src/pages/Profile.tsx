@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useApplications } from "@/hooks/useApplications";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 import {
     Briefcase,
     CheckCircle2,
@@ -9,7 +11,10 @@ import {
     CalendarDays,
     Mail,
     User,
-    Clock
+    Clock,
+    Pencil,
+    Save,
+    X
 } from "lucide-react";
 import { format } from "date-fns";
 import ProfileDropdown from "@/components/profile/ProfileDropdown";
@@ -17,11 +22,44 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useToast } from "@/hooks/use-toast";
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, updateProfile } = useAuth();
     const { applications, isLoading } = useApplications();
     const navigate = useNavigate();
+    const { toast } = useToast();
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [name, setName] = useState(user?.user_metadata?.full_name || "");
+    const [isSaving, setIsSaving] = useState(false);
+
+    const handleSave = async () => {
+        if (!name.trim()) return;
+
+        try {
+            setIsSaving(true);
+            await updateProfile({ full_name: name });
+            setIsEditing(false);
+            toast({
+                title: "Profile updated",
+                description: "Your name has been updated successfully.",
+            });
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message || "Failed to update profile",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    const handleCancel = () => {
+        setName(user?.user_metadata?.full_name || "");
+        setIsEditing(false);
+    };
 
     // Calculate statistics
     const stats = {
@@ -32,6 +70,12 @@ const Profile = () => {
     };
 
     const getInitials = () => {
+        if (name) {
+            return name.substring(0, 2).toUpperCase();
+        }
+        if (user?.user_metadata?.full_name) {
+            return user.user_metadata.full_name.substring(0, 2).toUpperCase();
+        }
         if (!user?.email) return "U";
         return user.email.substring(0, 2).toUpperCase();
     };
@@ -82,8 +126,40 @@ const Profile = () => {
                                 </Avatar>
 
                                 <div className="space-y-4 text-center md:text-left flex-1">
-                                    <div>
-                                        <h2 className="text-2xl font-semibold">{user?.email?.split('@')[0]}</h2>
+                                    <div className="flex-1">
+                                        {isEditing ? (
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <Input
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    placeholder="Enter your name"
+                                                    className="max-w-xs"
+                                                />
+                                                <Button size="icon" variant="ghost" onClick={handleSave} disabled={isSaving} title="Save">
+                                                    <Save className="h-4 w-4 text-green-600" />
+                                                </Button>
+                                                <Button size="icon" variant="ghost" onClick={handleCancel} disabled={isSaving} title="Cancel">
+                                                    <X className="h-4 w-4 text-destructive" />
+                                                </Button>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
+                                                <h2 className="text-2xl font-semibold">
+                                                    {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
+                                                </h2>
+                                                <Button
+                                                    size="icon"
+                                                    variant="ghost"
+                                                    className="h-8 w-8 opacity-50 hover:opacity-100"
+                                                    onClick={() => {
+                                                        setName(user?.user_metadata?.full_name || user?.email?.split('@')[0] || "");
+                                                        setIsEditing(true);
+                                                    }}
+                                                >
+                                                    <Pencil className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        )}
                                         <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground mt-1">
                                             <Mail className="h-4 w-4" />
                                             <span>{user?.email}</span>

@@ -31,5 +31,20 @@ export const useAuth = () => {
     await supabase.auth.signOut();
   };
 
-  return { user, session, loading, signOut };
+  const updateProfile = async (updates: { full_name?: string }) => {
+    const { error } = await supabase.auth.updateUser({
+      data: updates,
+    });
+
+    if (error) throw error;
+
+    // Refresh the session to get updated user metadata
+    const { data: { session: newSession } } = await supabase.auth.refreshSession();
+    if (newSession) {
+      setSession(newSession);
+      setUser(newSession.user);
+    }
+  };
+
+  return { user, session, loading, signOut, updateProfile };
 };
