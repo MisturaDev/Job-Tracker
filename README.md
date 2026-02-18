@@ -4,8 +4,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-
-A modern job application tracking app built with React to help users organize and monitor their job search efficiently.
+A modern job application tracking app built with React, designed to help users organize, manage and monitor their job search efficiently through a clean and responsive interface.
 
 ---
 
