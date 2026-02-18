@@ -95,6 +95,9 @@ Coming up soon...
 
 ---
 
+This project demonstrates my ability to build modern, scalable full-stack applications using industry-standard tools.
+
+---
 
 ## Developer
 
