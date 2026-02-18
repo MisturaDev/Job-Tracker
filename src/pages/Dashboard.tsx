@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Briefcase, Plus, LogOut, Search } from "lucide-react";
+import { Briefcase, Plus, Search } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/hooks/useAuth";
 import { useApplications } from "@/hooks/useApplications";
@@ -12,6 +12,7 @@ import StatusFilter from "@/components/dashboard/StatusFilter";
 import ApplicationCard from "@/components/dashboard/ApplicationCard";
 import ApplicationFormDialog, { ApplicationFormData } from "@/components/dashboard/ApplicationFormDialog";
 import ApplicationDetailsDialog from "@/components/dashboard/ApplicationDetailsDialog";
+import ProfileDropdown from "@/components/profile/ProfileDropdown";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   AlertDialog,
@@ -65,10 +66,7 @@ const Dashboard = () => {
     return filtered;
   }, [applications, statusFilter, searchQuery]);
 
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
-  };
+  // handleSignOut removed as it is handled in ProfileDropdown
 
   const handleView = (application: Application) => {
     setViewingApplication(application);
@@ -115,13 +113,8 @@ const Dashboard = () => {
             <span className="text-2xl font-bold text-foreground">JobTracker</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground hidden sm:inline">
-              {user?.email}
-            </span>
             <ThemeToggle />
-            <Button variant="ghost" size="icon" onClick={handleSignOut}>
-              <LogOut className="h-5 w-5" />
-            </Button>
+            <ProfileDropdown />
           </div>
         </div>
       </header>
