@@ -40,7 +40,7 @@ import {
 import { Application, ApplicationStatus, LocationType } from "@/types/application";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   company_name: z.string().min(1, "Company name is required"),
   role: z.string().min(1, "Role is required"),
   location_type: z.enum(["remote", "onsite", "hybrid"]),
@@ -50,13 +50,13 @@ const formSchema = z.object({
   notes: z.string().optional(),
 });
 
-type FormData = z.infer<typeof formSchema>;
+export type ApplicationFormData = z.infer<typeof formSchema>;
 
 interface ApplicationFormDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   application?: Application | null;
-  onSubmit: (data: FormData) => void;
+  onSubmit: (data: ApplicationFormData) => void;
   isLoading: boolean;
 }
 
@@ -70,7 +70,7 @@ const ApplicationFormDialog = ({
   const isEditing = !!application;
   const isMobile = useIsMobile();
 
-  const form = useForm<FormData>({
+  const form = useForm<ApplicationFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       company_name: "",
@@ -107,12 +107,12 @@ const ApplicationFormDialog = ({
     }
   }, [application, form]);
 
-  const handleSubmit = (data: FormData) => {
+  const handleSubmit = (data: ApplicationFormData) => {
     onSubmit({
       ...data,
       application_link: data.application_link || undefined,
       notes: data.notes || undefined,
-    } as FormData);
+    } as ApplicationFormData);
     onOpenChange(false);
   };
 

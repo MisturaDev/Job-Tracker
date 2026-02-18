@@ -10,7 +10,7 @@ import { Application, ApplicationStatus } from "@/types/application";
 import StatsCards from "@/components/dashboard/StatsCards";
 import StatusFilter from "@/components/dashboard/StatusFilter";
 import ApplicationCard from "@/components/dashboard/ApplicationCard";
-import ApplicationFormDialog from "@/components/dashboard/ApplicationFormDialog";
+import ApplicationFormDialog, { ApplicationFormData } from "@/components/dashboard/ApplicationFormDialog";
 import ApplicationDetailsDialog from "@/components/dashboard/ApplicationDetailsDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   const filteredApplications = useMemo(() => {
     let filtered = applications;
-    
+
     // Apply search filter
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -56,12 +56,12 @@ const Dashboard = () => {
           app.role.toLowerCase().includes(query)
       );
     }
-    
+
     // Apply status filter
     if (statusFilter !== "all") {
       filtered = filtered.filter((app) => app.status === statusFilter);
     }
-    
+
     return filtered;
   }, [applications, statusFilter, searchQuery]);
 
@@ -79,11 +79,21 @@ const Dashboard = () => {
     setFormOpen(true);
   };
 
-  const handleFormSubmit = (data: any) => {
+  const handleFormSubmit = (data: ApplicationFormData) => {
     if (editingApplication) {
       updateApplication({ id: editingApplication.id, updates: data });
     } else {
-      createApplication({ ...data, user_id: user!.id });
+      const newApplication = {
+        user_id: user!.id,
+        company_name: data.company_name,
+        role: data.role,
+        location_type: data.location_type,
+        date_applied: data.date_applied,
+        status: data.status,
+        application_link: data.application_link || null,
+        notes: data.notes || null,
+      };
+      createApplication(newApplication);
     }
     setEditingApplication(null);
   };
@@ -141,7 +151,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <StatusFilter selected={statusFilter} onChange={setStatusFilter} />
-            <Button 
+            <Button
               onClick={() => setFormOpen(true)}
               className="w-full sm:w-auto transition-all duration-200 hover:scale-105 active:scale-95"
             >
