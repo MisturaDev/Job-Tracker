@@ -1,4 +1,9 @@
 # JobTracker
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
 
 A modern job application tracking app built with React to help users organize and monitor their job search efficiently.
 
@@ -18,7 +23,7 @@ A modern job application tracking app built with React to help users organize an
 
 - Search and filter applications
 
-- Tags/labels for better organization
+- Tags for better organization
 
 - View job details modal
 
