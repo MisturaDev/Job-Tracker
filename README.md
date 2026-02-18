@@ -4,7 +4,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-A modern job application tracking app built with React, designed to help users organize, manage and monitor their job search efficiently through a clean and responsive interface.
+JobTracker is a modern job application tracking web app that helps users organize, monitor and manage their job search in one place. Built with React, Tailwind CSS and Supabase, it provides a clean dashboard for tracking applications, interviews and offers efficiently.
 
 ---
 
