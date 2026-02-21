@@ -93,7 +93,7 @@ Coming up soon...
 ---
 
 ## Live Demo
-[Live Demo](https://job-purple.lovable.app/)
+[Live Demo](https://job-tracker-wine-seven.vercel.app/)
 
 ---
 
