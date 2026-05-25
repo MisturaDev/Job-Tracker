@@ -20,9 +20,9 @@ import { format } from "date-fns";
 import ProfileDropdown from "@/components/profile/ProfileDropdown";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/logo.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
+import BrandLogo from "@/components/BrandLogo";
 
 const Profile = () => {
     const { user, updateProfile } = useAuth();
@@ -95,8 +95,7 @@ const Profile = () => {
             <header className="border-b border-border sticky top-0 bg-background z-10">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/dashboard")}>
-                        <img src={logo} alt="JobTracker logo" className="h-8 w-8 rounded-lg" />
-                        <span className="text-2xl font-bold text-foreground">JobTracker</span>
+                        <BrandLogo />
                     </div>
                     <div className="flex items-center gap-2">
                         <ThemeToggle />
