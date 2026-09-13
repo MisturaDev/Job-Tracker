@@ -86,9 +86,14 @@ Built with React, Tailwind CSS and Supabase, it provides a clean dashboard for t
 ---
 
 ## Screenshots
-Coming up soon...
 
+| Landing Page | Dashboard Page | AddApplication Page |
+|---------------|-----------------|-----------------------|
+| ![Landing](screenshots/Landing.png) | ![Dashboard](screenshots/Dashboard.png) | ![Add Application](screenshots/Add-Application.png) |
 
+| Job List Page | Job Details Page | Profile Page |
+|---------------|------------------|---------------|
+| ![Job List](screenshots/Job-List.png) | ![Job Details](screenshots/Job-Details.png) | ![Profile](screenshots/Profile.png) |
 
 ---
 
